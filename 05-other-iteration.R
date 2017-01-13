@@ -49,7 +49,7 @@ accidents <- tibble(
 accidents %>%
   mutate(
     model = map(data, ~ lm(count ~ month + wday, data = .x)),
-    rsquare = map_dbl(model, data, modelr::rsquare)) %>%
+    rsquare = map2_dbl(model, data, modelr::rsquare)) %>%
   arrange(rsquare) %>% 
   select(name, rsquare)
 
