@@ -1,4 +1,5 @@
 library(purrr)
+library(readr)
 
 # safely() and transpose() -------------------------------------------------
 
