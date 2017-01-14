@@ -50,9 +50,19 @@ people_tbl <- people_tbl %>%
 people_tbl %>% select(n_films, film_names)
 people_tbl$film_names
 
-# might be easier to have a squashed version for easy eye-balling
+# Your Turn ---------------------------------------------------------------
+
+# Create a new character column that collapses the film numbers in a single string,
+# e.g. for Luke " 6, 3, 2, 1, 7"
+
+# Do it for luke
+paste(people_tbl$film_numbers[[1]], 
+  collapse = ", ")
+
+# Do it for all
 people_tbl <- people_tbl %>%
-  mutate(films_squashed = map_chr(film_numbers, paste, collapse = ", "))
+  mutate(films_squashed = map_chr(film_numbers,
+                          ~ paste(.x, collapse = ", ")))
 
 people_tbl %>% select(name, films_squashed)
 
