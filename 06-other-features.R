@@ -10,11 +10,11 @@ urls <- list(
 
 map(urls, read_lines)
 
-safe_readLines <- safely(readLines)
+safe_readlines <- safely(readLines)
 safe_readlines
 
 # Use the safe_readLines() function with map(): html
-html <- map(urls, safe_readLines)
+html <- map(urls, safe_readlines)
 
 # Call str() on html
 str(html)
