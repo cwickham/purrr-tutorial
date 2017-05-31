@@ -1,5 +1,5 @@
 ## http://swapi.co/
-# install_github("ironholds/rwars", ref = "0.5.0")
+# install.packages("rwars")
 library(rwars)
 library(purrr)
 
@@ -16,11 +16,12 @@ get_all <- function(x = NULL, old_data = NULL, fun, ...){
 
 entities <- c("species", "people", "films", "vehicles", "starships",
   "planets")
+entity_funs <- map(paste0("get_all_", entities), match.fun)
 
-all_ents <- map(entities, 
-  ~ get_all(fun = match.fun(paste0("get_all_", .x)), parse_result = TRUE))
+all_ents <- map(entity_funs, ~ get_all(fun = .x, parse_result = TRUE))
 
-all_ents <- map(all_ents, ~ transpose(.x)[["results"]] %>% flatten())
+all_ents_res <- map(all_ents, 
+  ~ transpose(.x)[["results"]] %>% flatten())
 
 map2(entities, all_ents, ~ assign(.x, .y, envir = globalenv()))
 
