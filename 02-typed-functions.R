@@ -1,40 +1,44 @@
 library(purrr)
-load("data/swapi.rda")
+library(repurrrsive)
 
 # Typed functions
-people <- people %>% set_names(map_chr(people, "name"))
+sw_people <- sw_people %>% set_names(map_chr(sw_people, "name"))
 
 # How many starships has each character been in?
-map(people, ~ length(.x[["starships"]]))
+map(sw_people, ~ length(.x[["starships"]]))
 
 # What color is each characters hair?
-map(people, ~ .x[["hair_color"]])
+map(sw_people, ~ .x[["hair_color"]])
 
 # Is the character male?
-map(people, ~ .x[["gender"]] == "male")
+map(sw_people, ~ .x[["gender"]] == "male")
 
 # How heavy is each character?
-map(people, ~ .x[["mass"]])
+map(sw_people, ~ .x[["mass"]])
 
+
+
+
+# Solutions ---------------------------------------------------------------
 
 # How many starships has each character been in?
-map_int(people, ~ length(.x[["starships"]]))
+map_int(sw_people, ~ length(.x[["starships"]]))
 
 # What color is each characters hair?
-map_chr(people, ~ .x[["hair_color"]]) 
+map_chr(sw_people, ~ .x[["hair_color"]]) 
 
 # Is the character male?
-map_lgl(people, ~ .x[["gender"]] == "male") 
+map_lgl(sw_people, ~ .x[["gender"]] == "male") 
 
 # How heavy is each character?
-map_dbl(people, ~ .x[["mass"]])
+map_dbl(sw_people, ~ .x[["mass"]])
 # Doesn't work...because we get a string back
-map(people, ~ .x[["mass"]])
+map(sw_people, ~ .x[["mass"]])
 
 # A little risky
-map_dbl(people, ~ as.numeric(.x[["mass"]]))
+map_dbl(sw_people, ~ as.numeric(.x[["mass"]]))
 
 # Probably want something like:
-map_chr(people, ~ .x[["mass"]]) %>%
+map_chr(sw_people, ~ .x[["mass"]]) %>%
   readr::parse_number(na = "unknown")
 

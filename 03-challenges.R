@@ -1,25 +1,29 @@
 # Star wars challenges
 library(purrr)
-
-# loads objects: films, people, vehicles, starships, 
-# planets & species
-load("data/swapi.rda")
+library(repurrrsive)
 
 # Which film (see films) has the most characters?
-map(films, "characters") %>%
+map(sw_films, "characters") %>%
   map_int(length) %>%
-  set_names(map_chr(films, "title")) %>%
+  set_names(map_chr(sw_films, "title")) %>%
   sort()
 
-# Create the planet_lookup vector from earlier.
-planet_lookup <- map_chr(planets, "name") %>% 
-  set_names(map(planets, "url"))
-
 # Which species has the most possible eye colors?
-species[[1]]$eye_colors
+sw_species[[1]]$eye_colors
 
-map_chr(species, "eye_colors") %>%
+map_chr(sw_species, "eye_colors") %>%
   strsplit(", ") %>%
-  map_int(length)
+  map_int(length) %>%
+  set_names(map_chr(sw_species, "name"))
 # this is lazy, what about n/a and unknown?
 
+# Which planets do we know the least about?
+# For one, entry 61
+map_lgl(sw_planets[[61]], ~ "unknown" %in% .x) %>%
+  sum()
+
+# For all
+map_int(sw_planets, 
+  ~ map_lgl(.x, ~ "unknown" %in% .x) %>% sum()) %>%
+  set_names(map_chr(sw_planets, "name")) %>%
+  sort(decreasing = TRUE)
