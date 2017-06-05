@@ -1,14 +1,15 @@
 # A purrr tutorial
 
-This repo hosts the materials for a [purrr](http://purrr.tidyverse.org/) tutorial.  The materials currently reflect the version planned for the Cascadia R Conf, Portland, OR Jun 2017.
+This repo hosts the materials for a [purrr](http://purrr.tidyverse.org/) tutorial.  The materials currently reflect the version planned for the useR! Brussels, Belgium, July 2017.
 
 ## Upcoming in-person tutorials
 
-* [Cascadia R Conf](https://cascadiarconf.com/) Portland, OR, June 3 2017
 * [useR!](https://user2017.brussels/) Brussels, Belgium, July 4 2017
 * [London R-ladies](https://www.meetup.com/rladies-london/) London, U.K., July 12 2017 
 
 Older versions of the materials, from prior in-person tutorials, are also available:
+
+* [Cascadia R Conf June 3 2017 (1.75 hours)](https://github.com/cwickham/purrr-tutorial/tree/v0.2) 
 
 * [rstudio::conf Jan 2017 (2.25 hours)](https://github.com/cwickham/purrr-tutorial/tree/v0.1)
 
